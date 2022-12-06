@@ -64,4 +64,37 @@ public class ModelTest {
 		// Test that a booking can't be cancelled if it doesn't exist
 		Assert.assertThrows(FlightBookingSystemException.class, () -> { customer.cancelBooking(flight); });
 	}
- }
+	
+	// Flight Model Tests
+	@Test
+	public void testNewFlight() {
+		flight = new Flight(1, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"));
+		Assert.assertEquals(1, flight.getId());
+		Assert.assertEquals("Flight1", flight.getFlightNumber());
+		Assert.assertEquals("UK", flight.getOrigin());
+		Assert.assertEquals("USA", flight.getDestination());
+		Assert.assertEquals(LocalDate.parse("2022-11-11"), flight.getDepartureDate());
+	}
+	
+	@Test
+	public void testFlightAddPassenger() throws FlightBookingSystemException {
+		flight = new Flight(1, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"));
+		customer = new Customer(1, "John Doe", "07777777777");
+		flight.addPassenger(customer);
+		
+		Assert.assertEquals(1, flight.getPassengers().size());
+		Assert.assertThrows(FlightBookingSystemException.class, () -> { flight.addPassenger(customer); });
+	}
+	
+	@Test
+	public void testFlightRemovePassenger() throws FlightBookingSystemException {
+		flight = new Flight(1, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"));
+		customer = new Customer(1, "John Doe", "07777777777");
+		
+		flight.addPassenger(customer);
+		flight.removePassenger(customer);
+		Assert.assertEquals(Collections.EMPTY_LIST, flight.getPassengers());
+		
+		Assert.assertThrows(FlightBookingSystemException.class, () -> { flight.removePassenger(customer); });
+	}
+}
