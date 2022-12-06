@@ -4,7 +4,8 @@ import java.time.LocalDate;
 
 /**
  * Class model that represents a booking made in the system
- * @author Jack Atkins &amp; Daniel Jukes
+ * @author Jack Atkins
+ * @author Daniel Jukes
  */
 public class Booking {
     
@@ -35,7 +36,7 @@ public class Booking {
      */
     public Flight getFlight() { return flight; }
     
-    /**
+    /** 
      * @return the date that the booking was made
      */
     public LocalDate getBookingDate() { return bookingDate; }
