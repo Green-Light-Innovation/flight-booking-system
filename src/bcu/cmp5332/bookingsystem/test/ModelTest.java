@@ -97,4 +97,101 @@ public class ModelTest {
 		
 		Assert.assertThrows(FlightBookingSystemException.class, () -> { flight.removePassenger(customer); });
 	}
+	
+	// FlightBookingSystem Model Tests
+	@Test
+	public void testNewFlightBookingSystsem() {
+		system = new FlightBookingSystem();
+		Assert.assertEquals(Collections.EMPTY_LIST, system.getCustomers());
+		Assert.assertEquals(Collections.EMPTY_LIST, system.getFlights());
+	}
+	
+	@Test
+	public void testFlightBookingSystemAddFlight() throws IllegalArgumentException, FlightBookingSystemException {
+		system = new FlightBookingSystem();
+		flight = new Flight(1, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"));
+		system.addFlight(flight);
+		
+		Assert.assertEquals(1, system.getFlights().size());
+		Assert.assertThrows(IllegalArgumentException.class, () -> { system.addFlight(flight); });
+		
+		flight = new Flight(2, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"));
+		Assert.assertThrows(FlightBookingSystemException.class, () -> { system.addFlight(flight); });
+	}
+	
+	@Test
+	public void testFlightBookingSystemAddCustomer() throws IllegalArgumentException {
+		system = new FlightBookingSystem();
+		customer = new Customer(1, "John Doe", "07777777777");
+		system.addCustomer(customer);
+		
+		Assert.assertEquals(1, system.getCustomers().size());
+		Assert.assertThrows(IllegalArgumentException.class, () -> { system.addCustomer(customer); });
+	}
+	
+	@Test
+	public void testFlightBookingSystemGetFlights() throws IllegalArgumentException, FlightBookingSystemException, UnsupportedOperationException {
+		system = new FlightBookingSystem();
+		Flight flight1 = new Flight(1, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"));
+		Flight flight2 = new Flight(2, "Flight2", "UK", "USA", LocalDate.parse("2022-11-11"));
+		Flight flight3 = new Flight(3, "Flight3", "UK", "USA", LocalDate.parse("2022-11-11"));
+		
+		system.addFlight(flight1);
+		system.addFlight(flight2);
+		system.addFlight(flight3);
+		
+		Assert.assertEquals(3, system.getFlights().size());
+		Assert.assertThrows(UnsupportedOperationException.class, () -> { system.getFlights().remove(0); });
+	}
+	
+	@Test
+	public void testFlightBookingSystemGetFlightByID() throws FlightBookingSystemException{
+		system = new FlightBookingSystem();
+		Flight flight1 = new Flight(1, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"));
+		Flight flight2 = new Flight(2, "Flight2", "UK", "USA", LocalDate.parse("2022-11-11"));
+		Flight flight3 = new Flight(3, "Flight3", "UK", "USA", LocalDate.parse("2022-11-11"));
+		
+		system.addFlight(flight1);
+		system.addFlight(flight2);
+		system.addFlight(flight3);
+		
+		Assert.assertEquals(flight1, system.getFlightByID(1));
+		Assert.assertEquals(flight2, system.getFlightByID(2));
+		Assert.assertEquals(flight3, system.getFlightByID(3));
+		
+		Assert.assertThrows(FlightBookingSystemException.class, () -> { system.getFlightByID(0); });
+	}
+	
+	@Test
+	public void testFlightBookingSystemGetCustomers() throws IllegalArgumentException, UnsupportedOperationException{
+		system = new FlightBookingSystem();
+		Customer customer1 = new Customer(1, "John Doe", "07777777777");
+		Customer customer2 = new Customer(2, "Jane Doe", "07777777778");
+		Customer customer3 = new Customer(3, "John Smith", "07777777779");
+		
+		system.addCustomer(customer1);
+		system.addCustomer(customer2);
+		system.addCustomer(customer3);
+		
+		Assert.assertEquals(3, system.getCustomers().size());
+		Assert.assertThrows(UnsupportedOperationException.class, () -> { system.getCustomers().add(customer); });
+	}
+	
+	@Test
+	public void testFlightBookingSystemGetCustomerByID() throws FlightBookingSystemException {
+		system = new FlightBookingSystem();
+		Customer customer1 = new Customer(1, "John Doe", "07777777777");
+		Customer customer2 = new Customer(2, "Jane Doe", "07777777778");
+		Customer customer3 = new Customer(3, "John Smith", "07777777779");
+		
+		system.addCustomer(customer1);
+		system.addCustomer(customer2);
+		system.addCustomer(customer3);
+		
+		Assert.assertEquals(customer1, system.getCustomerByID(1));
+		Assert.assertEquals(customer2, system.getCustomerByID(2));
+		Assert.assertEquals(customer3, system.getCustomerByID(3));
+		
+		Assert.assertThrows(FlightBookingSystemException.class, () -> { system.getCustomerByID(0); });
+	}
 }
