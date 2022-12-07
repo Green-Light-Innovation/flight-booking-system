@@ -12,7 +12,15 @@ import java.util.Scanner;
 
 public class FlightDataManager implements DataManager {
     
-    private final String RESOURCE = "./resources/data/flights.txt";
+    private final String RESOURCE;
+    
+    public FlightDataManager() {
+    	this.RESOURCE = "./resources/data/flights.txt";
+    }
+    
+    public FlightDataManager(String resource) {
+    	this.RESOURCE = resource;
+    }
     
     @Override
     public void loadData(FlightBookingSystem fbs) throws IOException, FlightBookingSystemException {
