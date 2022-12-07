@@ -14,6 +14,7 @@ public class Customer {
     private int id;
     private String name;
     private String phone;
+    private String email;
     private final List<Booking> bookings = new ArrayList<>();
     
     /**
@@ -21,42 +22,48 @@ public class Customer {
      * @param name
      * @param phone
      */
-    public Customer(int id, String name, String phone) {
+    public Customer(int id, String name, String phone, String email) {
     	this.id		= id;
     	this.name	= name;
     	this.phone	= phone;
+    	this.email 	= email;
     }
     
     // GETTERS
     /**
-     * @return the customer's ID
+     * @return the customer's ID as {@link Integer}
      */
     public int getID() { return id; }
     
     /**
-     * @return the customer's name
+     * @return the customer's name as {@link String}
      */
     public String getName() { return name; }
     
     /**
-     * @return the customer's phone number
+     * @return the customer's phone number as {@link String}
      */
     public String getPhone() { return phone; }
     
     /**
-     * @return A list of the customers bookings
+     * @return the customer's email as {@link String}
+     */
+    public String getEmail() { return email; }
+    
+    /**
+     * @return A list of the customers bookings as {@link List}&lt;{@link Booking}&gt;
      */
     public List<Booking> getBookings() { return bookings; }
     
     /**
-     * @return basic customer details
+     * @return basic customer details as {@link String}
      */
     public String getDetailsShort() {
     	return "Id: " + id + " - " + name + " - " + phone;
     }
     
     /**
-     * @return customer's details and bookings
+     * @return customer's details and bookings as {@link String}
      */
     public String getDetailsLong() {
     	String details = "Customer #" + id + "\n" +
@@ -78,26 +85,32 @@ public class Customer {
     // SETTERS
     /**
      * Set the customer's ID
-     * @param id as {@code int}
+     * @param id as {@link Integer}
      */
     public void setID(int id) { this.id = id; }
     
     /**
      * Set the customer's name
-     * @param name as {@code String}
+     * @param name as {@link String}
      */
     public void setName(String name) { this.name = name; }
     
     /**
      * Set the customer's phone number
-     * @param phone as {@code String}
+     * @param phone as {@link String}
      */
     public void setPhone(String phone) { this.phone = phone; }
     
     /**
+     * Set the customer's email
+     * @param email as {@link String}
+     */
+    public void setEmail(String email) {this.email = email; }
+    
+    /**
      * Adds a booking object to the customer's list of bookings
-     * @throws {@code bcu.cmp5332.bookingsystem.main.FlightBookingSystemException} if the customer's list of bookings already contains the specified booking}
-     * @param booking as {@code Booking}
+     * @throws FlightBookingSystemException if the customer's list of bookings already contains the specified booking}
+     * @param booking as {@link Booking}
      */
     public void addBooking(Booking booking) throws FlightBookingSystemException {
     	
@@ -113,8 +126,8 @@ public class Customer {
     
     /**
      * Removes the specified booking from the customer's list of bookings
-     * @throws {@code bcu.cmp5332.bookingsystem.main.FlightBookingSystemException} if the customer’s list of bookings doesn’t contain a booking for the flight that is given as a parameter
-     * @param flight as {@code Flight}
+     * @throws FlightBookingSystemException if the customer’s list of bookings doesn’t contain a booking for the flight that is given as a parameter
+     * @param flight as {@link Flight}
      */
     public void cancelBooking(Flight flight) throws FlightBookingSystemException {
     	

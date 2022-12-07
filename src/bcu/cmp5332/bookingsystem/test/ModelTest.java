@@ -19,17 +19,18 @@ public class ModelTest {
 	// Customer Model Tests
 	@Test
 	public void testNewCustomer() {
-		customer = new Customer(1, "John Doe", "07777777777");
+		customer = new Customer(1, "John Doe", "07777777777", "john.doe@mail.com");
 		Assert.assertEquals(1, customer.getID());
 		Assert.assertEquals("John Doe", customer.getName());
 		Assert.assertEquals("07777777777", customer.getPhone());
+		Assert.assertEquals("john.doe@mail.com", customer.getEmail());
 		Assert.assertEquals(Collections.EMPTY_LIST, customer.getBookings());
 	}
 	
 	@Test
 	public void testCustomerAddBooking() throws FlightBookingSystemException {
 		// Test that a booking can be created and added to the customer's booking list
-		customer = new Customer(1, "John Doe", "07777777777");
+		customer = new Customer(1, "John Doe", "07777777777", "john.doe@mail.com");
 		flight = new Flight(1, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"));
 		booking = new Booking(customer, flight, LocalDate.parse("2022-11-11"));
 		
@@ -52,7 +53,7 @@ public class ModelTest {
 	@Test
 	public void testCustomerCancelBooking() throws FlightBookingSystemException {
 		// Test that an already existing booking can be cancelled
-		customer = new Customer(1, "John Doe", "07777777777");
+		customer = new Customer(1, "John Doe", "07777777777", "john.doe@mail.com");
 		flight = new Flight(1, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"));
 		booking = new Booking(customer, flight, LocalDate.parse("2022-11-11"));
 		customer.addBooking(booking);
@@ -79,7 +80,7 @@ public class ModelTest {
 	@Test
 	public void testFlightAddPassenger() throws FlightBookingSystemException {
 		flight = new Flight(1, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"));
-		customer = new Customer(1, "John Doe", "07777777777");
+		customer = new Customer(1, "John Doe", "07777777777", "john.doe@mail.com");
 		flight.addPassenger(customer);
 		
 		Assert.assertEquals(1, flight.getPassengers().size());
@@ -89,7 +90,7 @@ public class ModelTest {
 	@Test
 	public void testFlightRemovePassenger() throws FlightBookingSystemException {
 		flight = new Flight(1, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"));
-		customer = new Customer(1, "John Doe", "07777777777");
+		customer = new Customer(1, "John Doe", "07777777777", "john.doe@mail.com");
 		
 		flight.addPassenger(customer);
 		flight.removePassenger(customer);
@@ -120,13 +121,16 @@ public class ModelTest {
 	}
 	
 	@Test
-	public void testFlightBookingSystemAddCustomer() throws IllegalArgumentException {
+	public void testFlightBookingSystemAddCustomer() throws IllegalArgumentException, FlightBookingSystemException {
 		system = new FlightBookingSystem();
-		customer = new Customer(1, "John Doe", "07777777777");
+		customer = new Customer(1, "John Doe", "07777777777", "john.doe@mail.com");
 		system.addCustomer(customer);
 		
 		Assert.assertEquals(1, system.getCustomers().size());
 		Assert.assertThrows(IllegalArgumentException.class, () -> { system.addCustomer(customer); });
+		
+		customer = new Customer(2, "John Doe", "07777777777", "john.doe@mail.com");
+		Assert.assertThrows(FlightBookingSystemException.class, () -> { system.addCustomer(customer); });
 	}
 	
 	@Test
@@ -163,11 +167,11 @@ public class ModelTest {
 	}
 	
 	@Test
-	public void testFlightBookingSystemGetCustomers() throws IllegalArgumentException, UnsupportedOperationException{
+	public void testFlightBookingSystemGetCustomers() throws IllegalArgumentException, UnsupportedOperationException, FlightBookingSystemException {
 		system = new FlightBookingSystem();
-		Customer customer1 = new Customer(1, "John Doe", "07777777777");
-		Customer customer2 = new Customer(2, "Jane Doe", "07777777778");
-		Customer customer3 = new Customer(3, "John Smith", "07777777779");
+		Customer customer1 = new Customer(1, "John Doe", "07777777777", "john.doe@mail.com");
+		Customer customer2 = new Customer(2, "Jane Doe", "07777777778", "jane.doe@mail.com");
+		Customer customer3 = new Customer(3, "John Smith", "07777777779", "john.smith@mail.com");
 		
 		system.addCustomer(customer1);
 		system.addCustomer(customer2);
@@ -180,9 +184,9 @@ public class ModelTest {
 	@Test
 	public void testFlightBookingSystemGetCustomerByID() throws FlightBookingSystemException {
 		system = new FlightBookingSystem();
-		Customer customer1 = new Customer(1, "John Doe", "07777777777");
-		Customer customer2 = new Customer(2, "Jane Doe", "07777777778");
-		Customer customer3 = new Customer(3, "John Smith", "07777777779");
+		Customer customer1 = new Customer(1, "John Doe", "07777777777", "john.doe@mail.com");
+		Customer customer2 = new Customer(2, "Jane Doe", "07777777778", "jane.doe@mail.com");
+		Customer customer3 = new Customer(3, "John Smith", "07777777779", "john.smith@mail.com");
 		
 		system.addCustomer(customer1);
 		system.addCustomer(customer2);

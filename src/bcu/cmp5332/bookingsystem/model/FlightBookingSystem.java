@@ -90,11 +90,19 @@ public class FlightBookingSystem {
      * Add a customer to the list of customers in the system
      * @param customer as {@link Customer}
      * @throws IllegalArgumentException if a customer with the same ID is already in the system
+     * @throws FlightBookingSystemException if a customer with the same email is already in the system
      */
-    public void addCustomer(Customer customer) throws IllegalArgumentException {
+    public void addCustomer(Customer customer) throws IllegalArgumentException, FlightBookingSystemException {
     	// Check if the customer already exists in the tree map
     	if (customers.containsKey(customer.getID())) {
     		throw new IllegalArgumentException("This customer has already been added to the system.");
+    	}
+    	
+    	// Check to see if customer with the same email already exists
+    	for (Customer systemCustomer : customers.values()) {
+    		if (customer.getEmail() == systemCustomer.getEmail()) {
+    			throw new FlightBookingSystemException("A customer with the email: " + customer.getEmail() + " already exists.");
+    		}
     	}
     	
     	customers.put(customer.getID(), customer);
