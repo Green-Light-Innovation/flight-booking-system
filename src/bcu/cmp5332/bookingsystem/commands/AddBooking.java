@@ -3,10 +3,19 @@ package bcu.cmp5332.bookingsystem.commands;
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 import bcu.cmp5332.bookingsystem.model.*;
 
+/**
+ * {@link Command} class that adds a {@link Booking} to the flight booking system
+ * @author Jack Atkins
+ * @author Daniel Jukes
+ */
 public class AddBooking implements Command {
 	private final int FLIGHT_ID;
 	private final int CUSTOMER_ID;
 	
+	/**
+	 * @param customerID as {@link Integer}
+	 * @param flightID as {@link Integer}
+	 */
 	public AddBooking(int customerID, int flightID) {
 		this.FLIGHT_ID = flightID;
 		this.CUSTOMER_ID = customerID;

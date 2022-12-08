@@ -3,12 +3,22 @@ package bcu.cmp5332.bookingsystem.commands;
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 import bcu.cmp5332.bookingsystem.model.*;
 
+/**
+ * {@link Command} class that changes the {@link Flight} of a {@link Customer}'s 
+ * @author Jack Atkins
+ * @author Daniel Jukes
+ */
 public class EditBooking implements Command {
 	
 	private final int CUSTOMER_ID;
 	private final int FLIGHT_ID;
 	private final int NEW_FLIGHT_ID;
 	
+	/**
+	 * @param customerID as {@link Integer}
+	 * @param flightID as {@link Integer}
+	 * @param newFlightID as {@link Integer}
+	 */
 	public EditBooking(int customerID, int flightID, int newFlightID) {
 		this.CUSTOMER_ID = customerID;
 		this.FLIGHT_ID = flightID;

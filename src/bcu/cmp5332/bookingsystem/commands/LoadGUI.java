@@ -4,6 +4,11 @@ import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
 import bcu.cmp5332.bookingsystem.gui.MainWindow;
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 
+/**
+ * {@link Command} class that initialises the system's GUI
+ * @author Jack Atkins
+ * @author Daniel Jukes
+ */
 public class LoadGUI implements Command {
 
     @Override

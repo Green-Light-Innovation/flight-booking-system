@@ -6,6 +6,11 @@ import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
 
 import java.util.List;
 
+/**
+ * {@link Command} class that outputs all the {@link Flight}'s in the {@link FlightBookingSystem}
+ * @author Jack Atkins
+ * @author Daniel Jukes
+ */
 public class ListFlights implements Command {
 
     @Override

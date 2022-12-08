@@ -4,12 +4,23 @@ import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 import bcu.cmp5332.bookingsystem.model.Customer;
 import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
 
+/**
+ * {@link Command} class that adds a {@link Customer} to the flight booking system.
+ * @author Jack Atkins
+ * @author Jack Jukes
+ */
 public class AddCustomer implements Command {
 
     private final String name;
     private final String phone;
     private final String email;
-
+    
+    /**
+     * 
+     * @param name as {@link String}
+     * @param phone as {@link String}
+     * @param email as {@link String}
+     */
     public AddCustomer(String name, String phone, String email) {
         this.name = name;
         this.phone = phone;
