@@ -100,8 +100,8 @@ public class FlightBookingSystem {
     	
     	// Check to see if customer with the same email already exists
     	for (Customer systemCustomer : customers.values()) {
-    		if (customer.getEmail() == systemCustomer.getEmail()) {
-    			throw new FlightBookingSystemException("A customer with the email: " + customer.getEmail() + " already exists.");
+    		if (customer.getEmail().equals( systemCustomer.getEmail() )) {
+    			throw new FlightBookingSystemException("A customer with the email: '" + customer.getEmail() + "' already exists.");
     		}
     	}
     	
