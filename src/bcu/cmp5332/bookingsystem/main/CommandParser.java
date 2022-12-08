@@ -27,7 +27,16 @@ public class CommandParser {
                 LocalDate departureDate = parseDateWithAttempts(reader);
 
                 return new AddFlight(flighNumber, origin, destination, departureDate);
+                
             } else if (cmd.equals("addcustomer")) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+                System.out.print("Customer name: ");
+                String name = reader.readLine();
+                System.out.print("Phone number: ");
+                String phone = reader.readLine();
+                System.out.print("Email: ");
+                String email = reader.readLine();
+                return new AddCustomer(name, phone, email);
                 
             } else if (cmd.equals("loadgui")) {
                 return new LoadGUI();
