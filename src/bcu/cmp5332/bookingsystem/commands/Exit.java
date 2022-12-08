@@ -13,12 +13,10 @@ import bcu.cmp5332.bookingsystem.data.FlightBookingSystemData;
  */
 public class Exit implements Command {
 	
-	private final FlightBookingSystemData dataManager = new FlightBookingSystemData();
-	
 	@Override
 	public void execute(FlightBookingSystem flightBookingSystem) throws FlightBookingSystemException {
 		try {
-			dataManager.store(flightBookingSystem);
+			FlightBookingSystemData.store(flightBookingSystem);
 		} catch(IOException ex) {
 			throw new FlightBookingSystemException("Error storing flight booking system data\nError: " + ex);
 		}
