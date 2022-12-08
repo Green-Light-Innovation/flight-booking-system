@@ -59,7 +59,7 @@ public class Customer {
      * @return basic customer details as {@link String}
      */
     public String getDetailsShort() {
-    	return "Id: " + id + " - " + name + " - " + phone;
+    	return "Id: " + id + " - " + name + " - " + phone + " - " + email;
     }
     
     /**
@@ -69,6 +69,7 @@ public class Customer {
     	String details = "Customer #" + id + "\n" +
     			"Name: " + name + "\n" +
     			"Phone: " + phone + "\n" +
+    			"Email: " + email + "\n" +
     			"--------------------------\n" +
     			"Bookings:\n";
     	
