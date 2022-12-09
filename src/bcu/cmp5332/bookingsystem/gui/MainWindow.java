@@ -94,6 +94,7 @@ public class MainWindow extends JFrame implements ActionListener {
         
         // adding Bookings menu and menu items
         bookingsMenu = new JMenu("Bookings");
+        menuBar.add(bookingsMenu);
         
         bookingsIssue = new JMenuItem("Issue");
         bookingsUpdate = new JMenuItem("Update");
@@ -161,7 +162,7 @@ public class MainWindow extends JFrame implements ActionListener {
             
             
         } else if (ae.getSource() == bookingsIssue) {
-            
+        	new IssueBookingWindow(this);
             
         } else if (ae.getSource() == bookingsCancel) {
             
@@ -173,7 +174,6 @@ public class MainWindow extends JFrame implements ActionListener {
             new AddCustomerWindow(this);
             
         } else if (ae.getSource() == custDel) {
-            
             
         }
     }
