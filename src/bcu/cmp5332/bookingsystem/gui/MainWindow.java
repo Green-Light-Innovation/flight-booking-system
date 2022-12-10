@@ -165,7 +165,7 @@ public class MainWindow extends JFrame implements ActionListener {
         	new IssueBookingWindow(this);
             
         } else if (ae.getSource() == bookingsCancel) {
-            
+        	new CancelBookingWindow(this);
             
         } else if (ae.getSource() == custView) {
             displayCustomers();
