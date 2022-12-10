@@ -10,6 +10,11 @@ import javax.swing.*;
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 import bcu.cmp5332.bookingsystem.model.*;
 
+/**
+ * GUI class used by the user to remove bookings from the {@link FlightBookingSystem}
+ * @author Jack Atkins
+ * @author Daniel Jukes
+ */
 public class CancelBookingWindow extends JFrame implements ActionListener {
 	
 	private MainWindow mainWindow;
@@ -27,6 +32,9 @@ public class CancelBookingWindow extends JFrame implements ActionListener {
 		initialize();
 	}
 	
+	/**
+	 * Initilize the GUI
+	 */
 	private void initialize() {
 		setSize(300,300);
 		
@@ -67,16 +75,26 @@ public class CancelBookingWindow extends JFrame implements ActionListener {
 		}
 	}
 	
+	/**
+	 * @return the {@link Customer} that is selected in the {@link JComboBox}
+	 * @throws FlightBookingSystemException
+	 */
 	private Customer getSelectedCustomer() throws FlightBookingSystemException {
 		return flightBookingSystem.getCustomers().get( customerSelection.getSelectedIndex() );
 	}
 	
+	/**
+	 * Loads the customers into the {@link JComboBox}
+	 */
 	private void loadCustomerData() {
 		flightBookingSystem.getCustomers().forEach(customer -> {
 			customerSelection.addItem(customer.getEmail());
 		});
 	}
 	
+	/**
+	 * Loads the customers booked flights into the {@link JList}
+	 */
 	private void loadCustomerBookings() {
 		try {
 			// Fetch customer from system
@@ -106,6 +124,10 @@ public class CancelBookingWindow extends JFrame implements ActionListener {
 		}
 	}
 	
+	/**
+	 * Removes the customer from the flight and the booking from the customer
+	 * @throws FlightBookingSystemException
+	 */
 	private void cancelBooking() throws FlightBookingSystemException {
 		// Get the selected flight
 		int selectedFlight = flightsList.getSelectedIndex();
