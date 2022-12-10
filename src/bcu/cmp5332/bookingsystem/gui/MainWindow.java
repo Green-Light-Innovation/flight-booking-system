@@ -1,9 +1,11 @@
 package bcu.cmp5332.bookingsystem.gui;
 
 import bcu.cmp5332.bookingsystem.data.FlightBookingSystemData;
+import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 import bcu.cmp5332.bookingsystem.model.Flight;
 import bcu.cmp5332.bookingsystem.model.Customer;
 import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
+import bcu.cmp5332.bookingsystem.commands.Exit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -147,8 +149,8 @@ public class MainWindow extends JFrame implements ActionListener {
 
         if (ae.getSource() == adminExit) {
             try {
-                FlightBookingSystemData.store(fbs);
-            } catch (IOException ex) {
+                new Exit().execute(fbs);
+            } catch (FlightBookingSystemException ex) {
                 JOptionPane.showMessageDialog(this, ex, "Error", JOptionPane.ERROR_MESSAGE);
             }
             System.exit(0);
