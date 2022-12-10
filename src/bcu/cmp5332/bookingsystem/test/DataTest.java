@@ -85,7 +85,7 @@ public class DataTest {
 		Customer customer1 = new Customer(1, "John Doe", "07111111111", "john.doe@mail.com");
 		Customer customer2 = new Customer(2, "Jane Doe", "07111111112", "jane.doe@mail.com");
 		
-		Flight flight = new Flight(1, "FLIGHT1", "London", "France", LocalDate.parse("2022-11-11"));
+		Flight flight = new Flight(1, "FLIGHT1", "London", "France", LocalDate.parse("2022-11-11"), 10, 40.0);
 		flight.addPassenger(customer1);
 		flight.addPassenger(customer2);
 		
@@ -104,7 +104,7 @@ public class DataTest {
 		// Create new FlightBookingSystem with the same customers and flights and test if booking data is loaded correctly
 		system = new FlightBookingSystem();
 		
-		flight = new Flight(1, "FLIGHT1", "London", "France", LocalDate.parse("2022-11-11"));
+		flight = new Flight(1, "FLIGHT1", "London", "France", LocalDate.parse("2022-11-11"), 10, 40.0);
 		customer1 = new Customer(1, "John Doe", "07111111111", "john.doe@mail.com");
 		customer2 = new Customer(2, "Jane Doe", "07111111112", "jane.doe@mail.com");
 		

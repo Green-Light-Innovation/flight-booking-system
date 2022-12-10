@@ -183,7 +183,7 @@ public class MainWindow extends JFrame implements ActionListener {
     public void displayFlights() {
         List<Flight> flightsList = fbs.getFlights();
         // headers for the table
-        String[] columns = new String[]{"Flight No", "Origin", "Destination", "Departure Date"};
+        String[] columns = new String[]{"Flight No", "Origin", "Destination", "Departure Date", "Capacity", "Price"};
 
         Object[][] data = new Object[flightsList.size()][6];
         for (int i = 0; i < flightsList.size(); i++) {
@@ -192,6 +192,8 @@ public class MainWindow extends JFrame implements ActionListener {
             data[i][1] = flight.getOrigin();
             data[i][2] = flight.getDestination();
             data[i][3] = flight.getDepartureDate();
+            data[i][4] = flight.getPassengerCapacity();
+            data[i][5] = flight.getPrice();
         }
 
         JTable table = new JTable(data, columns);

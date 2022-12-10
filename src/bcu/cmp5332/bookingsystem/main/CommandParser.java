@@ -40,10 +40,14 @@ public class CommandParser {
                 String origin = reader.readLine();
                 System.out.print("Destination: ");
                 String destination = reader.readLine();
-
                 LocalDate departureDate = parseDateWithAttempts(reader);
+                System.out.print("Passenger Capacity: ");
+                int passengerCapacity = Integer.parseInt(reader.readLine());
+                System.out.print("Price: £");
+                double price = Double.parseDouble(reader.readLine());
+                
 
-                return new AddFlight(flighNumber, origin, destination, departureDate);
+                return new AddFlight(flighNumber, origin, destination, departureDate, passengerCapacity, price);
     		}
     		
     		else if (cmd.equals("addcustomer")) {

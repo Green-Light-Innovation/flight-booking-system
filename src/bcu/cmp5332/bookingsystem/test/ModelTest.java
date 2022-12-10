@@ -31,7 +31,7 @@ public class ModelTest {
 	public void testCustomerAddBooking() throws FlightBookingSystemException {
 		// Test that a booking can be created and added to the customer's booking list
 		customer = new Customer(1, "John Doe", "07777777777", "john.doe@mail.com");
-		flight = new Flight(1, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"));
+		flight = new Flight(1, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"), 10, 40.0);
 		booking = new Booking(customer, flight, LocalDate.parse("2022-11-11"));
 		
 		customer.addBooking(booking);
@@ -42,7 +42,7 @@ public class ModelTest {
 		Assert.assertThrows(FlightBookingSystemException.class, () -> { customer.addBooking(booking); });
 		
 		// Test that another booking with a different flight can be made
-		flight = new Flight(2, "Flight2", "UK", "USA", LocalDate.parse("2022-12-11"));
+		flight = new Flight(2, "Flight2", "UK", "USA", LocalDate.parse("2022-12-11"), 10, 40.0);
 		booking = new Booking(customer, flight, LocalDate.parse("2022-11-11"));
 		
 		customer.addBooking(booking);
@@ -54,7 +54,7 @@ public class ModelTest {
 	public void testCustomerCancelBooking() throws FlightBookingSystemException {
 		// Test that an already existing booking can be cancelled
 		customer = new Customer(1, "John Doe", "07777777777", "john.doe@mail.com");
-		flight = new Flight(1, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"));
+		flight = new Flight(1, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"), 10, 40.0);
 		booking = new Booking(customer, flight, LocalDate.parse("2022-11-11"));
 		customer.addBooking(booking);
 		
@@ -69,17 +69,19 @@ public class ModelTest {
 	// Flight Model Tests
 	@Test
 	public void testNewFlight() {
-		flight = new Flight(1, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"));
+		flight = new Flight(1, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"), 10, 40.50132);
 		Assert.assertEquals(1, flight.getId());
 		Assert.assertEquals("Flight1", flight.getFlightNumber());
 		Assert.assertEquals("UK", flight.getOrigin());
 		Assert.assertEquals("USA", flight.getDestination());
 		Assert.assertEquals(LocalDate.parse("2022-11-11"), flight.getDepartureDate());
+		Assert.assertEquals(10, flight.getPassengerCapacity());
+		Assert.assertEquals(40.5, flight.getPrice(), 0);
 	}
 	
 	@Test
 	public void testFlightAddPassenger() throws FlightBookingSystemException {
-		flight = new Flight(1, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"));
+		flight = new Flight(1, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"), 10, 40.0);
 		customer = new Customer(1, "John Doe", "07777777777", "john.doe@mail.com");
 		flight.addPassenger(customer);
 		
@@ -89,7 +91,7 @@ public class ModelTest {
 	
 	@Test
 	public void testFlightRemovePassenger() throws FlightBookingSystemException {
-		flight = new Flight(1, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"));
+		flight = new Flight(1, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"), 10, 40.0);
 		customer = new Customer(1, "John Doe", "07777777777", "john.doe@mail.com");
 		
 		flight.addPassenger(customer);
@@ -110,13 +112,13 @@ public class ModelTest {
 	@Test
 	public void testFlightBookingSystemAddFlight() throws IllegalArgumentException, FlightBookingSystemException {
 		system = new FlightBookingSystem();
-		flight = new Flight(1, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"));
+		flight = new Flight(1, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"), 10, 40.0);
 		system.addFlight(flight);
 		
 		Assert.assertEquals(1, system.getFlights().size());
 		Assert.assertThrows(IllegalArgumentException.class, () -> { system.addFlight(flight); });
 		
-		flight = new Flight(2, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"));
+		flight = new Flight(2, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"), 10, 40.0);
 		Assert.assertThrows(FlightBookingSystemException.class, () -> { system.addFlight(flight); });
 	}
 	
@@ -136,9 +138,9 @@ public class ModelTest {
 	@Test
 	public void testFlightBookingSystemGetFlights() throws IllegalArgumentException, FlightBookingSystemException, UnsupportedOperationException {
 		system = new FlightBookingSystem();
-		Flight flight1 = new Flight(1, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"));
-		Flight flight2 = new Flight(2, "Flight2", "UK", "USA", LocalDate.parse("2022-11-11"));
-		Flight flight3 = new Flight(3, "Flight3", "UK", "USA", LocalDate.parse("2022-11-11"));
+		Flight flight1 = new Flight(1, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"), 10, 40.0);
+		Flight flight2 = new Flight(2, "Flight2", "UK", "USA", LocalDate.parse("2022-11-11"), 10, 40.0);
+		Flight flight3 = new Flight(3, "Flight3", "UK", "USA", LocalDate.parse("2022-11-11"), 10, 40.0);
 		
 		system.addFlight(flight1);
 		system.addFlight(flight2);
@@ -151,9 +153,9 @@ public class ModelTest {
 	@Test
 	public void testFlightBookingSystemGetFlightByID() throws FlightBookingSystemException{
 		system = new FlightBookingSystem();
-		Flight flight1 = new Flight(1, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"));
-		Flight flight2 = new Flight(2, "Flight2", "UK", "USA", LocalDate.parse("2022-11-11"));
-		Flight flight3 = new Flight(3, "Flight3", "UK", "USA", LocalDate.parse("2022-11-11"));
+		Flight flight1 = new Flight(1, "Flight1", "UK", "USA", LocalDate.parse("2022-11-11"), 10, 40.0);
+		Flight flight2 = new Flight(2, "Flight2", "UK", "USA", LocalDate.parse("2022-11-11"), 10, 40.0);
+		Flight flight3 = new Flight(3, "Flight3", "UK", "USA", LocalDate.parse("2022-11-11"), 10, 40.0);
 		
 		system.addFlight(flight1);
 		system.addFlight(flight2);

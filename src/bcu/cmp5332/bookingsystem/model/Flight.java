@@ -20,15 +20,28 @@ public class Flight {
     private String origin;
     private String destination;
     private LocalDate departureDate;
+    private int passengerCapacity;
+    private double price;
 
     private final Set<Customer> passengers;
-
-    public Flight(int id, String flightNumber, String origin, String destination, LocalDate departureDate) {
+    
+    /**
+     * @param id as {@link Integer}
+     * @param flightNumber as {@link String}
+     * @param origin as {@link String}
+     * @param destination as {@link String}
+     * @param departureDate as {@link LocalDate}
+     * @param passengerCapacity as {@link Integer}
+     * @param price as {@link Double}
+     */
+    public Flight(int id, String flightNumber, String origin, String destination, LocalDate departureDate, int passengerCapacity, double price) {
         this.id = id;
         this.flightNumber = flightNumber;
         this.origin = origin;
         this.destination = destination;
         this.departureDate = departureDate;
+        this.passengerCapacity = passengerCapacity;
+        this.price = roundPrice(price);
         
         passengers = new HashSet<>();
     }
@@ -109,6 +122,36 @@ public class Flight {
     }
     
     /**
+     * @return the number of passengers the {@link Flight} can have as {@link Integer}
+     */
+    public int getPassengerCapacity() {
+    	return passengerCapacity;
+    }
+    
+    /**
+     * Set the passenger capacity of the flight
+     * @param passengerCapacity as {@link Integer}
+     */
+    public void setPassengerCapacity(int passengerCapacity) {
+    	this.passengerCapacity = passengerCapacity;
+    }
+    
+    /**
+     * @return the price of the flight as {@link Double}
+     */
+    public double getPrice() {
+    	return price;
+    }
+    
+    /**
+     * set the price of the flight
+     * @param price as {@link Double}
+     */
+    public void setPrice(double price) {
+    	this.price = roundPrice(price);
+    }
+    
+    /**
      * @return a list of passengers that are booked for the flight as {@link List}&lt;{@link Customer}&gt;
      */
     public List<Customer> getPassengers() {
@@ -121,7 +164,9 @@ public class Flight {
     public String getDetailsShort() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/YYYY");
         return "Flight #" + id + " - " + flightNumber + " - " + origin + " to " 
-                + destination + " on " + departureDate.format(dtf);
+                + destination + " on " + departureDate.format(dtf) +
+                " (capacity of " + passengerCapacity + " passenger(s))" +
+                " price: £" + price;
     }
     
     /**
@@ -133,6 +178,8 @@ public class Flight {
         		+ "Origin: " + origin + "\n"
         		+ "Destination: " + destination + "\n"
         		+ "Departure Date: " + departureDate +"\n"
+        		+ "Capacity: " + passengerCapacity + "\n"
+        		+ "Price: £" + price + "\n"
         		+ "---------------------------\n"
         		+ "Passengers:\n";
         
@@ -174,5 +221,13 @@ public class Flight {
     		}
     	}
     	throw new FlightBookingSystemException("Could not find the specified passenger in the flights booking list.");
+    }
+    
+    /**
+     * @param price as {@link Float}
+     * @return the specified price rounded to two decimal places
+     */
+    private double roundPrice(double price) {
+    	return Double.parseDouble(String.format("%.2f", price));
     }
 }

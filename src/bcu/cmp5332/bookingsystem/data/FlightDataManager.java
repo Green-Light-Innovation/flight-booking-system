@@ -35,7 +35,9 @@ public class FlightDataManager implements DataManager {
                     String origin = properties[2];
                     String destination = properties[3];
                     LocalDate departureDate = LocalDate.parse(properties[4]);
-                    Flight flight = new Flight(id, flightNumber, origin, destination, departureDate);
+                    int passengerCapacity = Integer.parseInt(properties[5]);
+                    double price = Double.parseDouble(properties[6]);
+                    Flight flight = new Flight(id, flightNumber, origin, destination, departureDate, passengerCapacity, price);
                     fbs.addFlight(flight);
                 } catch (NumberFormatException ex) {
                     throw new FlightBookingSystemException("Unable to parse book id " + properties[0] + " on line " + line_idx
@@ -55,6 +57,8 @@ public class FlightDataManager implements DataManager {
                 out.print(flight.getOrigin() + SEPARATOR);
                 out.print(flight.getDestination() + SEPARATOR);
                 out.print(flight.getDepartureDate() + SEPARATOR);
+                out.print(flight.getPassengerCapacity() + SEPARATOR);
+                out.print(flight.getPrice() + SEPARATOR);
                 out.println();
             }
         }
