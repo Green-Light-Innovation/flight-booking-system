@@ -166,7 +166,7 @@ public class Flight {
         return "Flight #" + id + " - " + flightNumber + " - " + origin + " to " 
                 + destination + " on " + departureDate.format(dtf) +
                 " (capacity of " + passengerCapacity + " passenger(s))" +
-                " price: £" + price;
+                " price: ï¿½" + price;
     }
     
     /**
@@ -179,7 +179,7 @@ public class Flight {
         		+ "Destination: " + destination + "\n"
         		+ "Departure Date: " + departureDate +"\n"
         		+ "Capacity: " + passengerCapacity + "\n"
-        		+ "Price: £" + price + "\n"
+        		+ "Price: ï¿½" + price + "\n"
         		+ "---------------------------\n"
         		+ "Passengers:\n";
         
@@ -198,6 +198,7 @@ public class Flight {
      */
     public void addPassenger(Customer passenger) throws FlightBookingSystemException {
     	// Check if passenger is already booked for this flight
+    	// TODO Need to make sure no more passengers can be added past max capacity
     	for(Customer flightPassenger : passengers) {
     		if (passenger.getID() == flightPassenger.getID()) {
     			throw new FlightBookingSystemException("This passenger is already booked for this flight.");

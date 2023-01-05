@@ -26,6 +26,7 @@ public class AddBooking implements Command {
 		try {
 		Customer customer = flightBookingSystem.getCustomerByID(CUSTOMER_ID);
 		Flight flight = flightBookingSystem.getFlightByID(FLIGHT_ID);
+		//TODO Add booking status?
 		Booking booking = new Booking(customer, flight, flightBookingSystem.getSystemDate());
 		
 		customer.addBooking(booking);

@@ -8,7 +8,7 @@ import java.time.LocalDate;
  * @author Daniel Jukes
  */
 public class Booking {
-    
+    //TODO Add booking status?
     private Customer customer;
     private Flight flight;
     private LocalDate bookingDate;
