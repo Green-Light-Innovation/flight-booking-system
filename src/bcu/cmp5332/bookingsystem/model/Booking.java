@@ -57,7 +57,7 @@ public class Booking {
     
     /**
      * Set the date that the booking was made
-     * @param as {@code LocalDate}
+     * @param date as {@code LocalDate}
      */
     public void setBookingDate(LocalDate date) { this.bookingDate = date; }
 }

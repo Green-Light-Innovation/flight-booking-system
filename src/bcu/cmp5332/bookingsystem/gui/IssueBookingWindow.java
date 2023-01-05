@@ -1,7 +1,6 @@
 package bcu.cmp5332.bookingsystem.gui;
 
-import java.util.Map;
-import java.util.TreeMap;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +11,7 @@ import bcu.cmp5332.bookingsystem.commands.AddBooking;
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 
 /**
- * GUI used to add bookings to the {@link FlightBookingSystem}
+ * GUI pop-up used to add {@link Booking}s to the {@link FlightBookingSystem}
  * @author Jack Atkins
  * @author Daniel Jukes
  */

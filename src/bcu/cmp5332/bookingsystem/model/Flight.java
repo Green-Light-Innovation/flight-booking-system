@@ -100,7 +100,7 @@ public class Flight {
     
     /**
      * Set the destination location of this flight
-     * @param destination {@link as String}
+     * @param destination {@link String}
      */
     public void setDestination(String destination) {
         this.destination = destination;

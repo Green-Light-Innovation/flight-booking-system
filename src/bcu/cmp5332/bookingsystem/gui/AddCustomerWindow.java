@@ -7,8 +7,15 @@ import javax.swing.*;
 
 import bcu.cmp5332.bookingsystem.commands.Command;
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
+import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
 import bcu.cmp5332.bookingsystem.commands.AddCustomer;
+import bcu.cmp5332.bookingsystem.model.Customer;
 
+/**
+ * GUI pop-up used to add new {@link Customer}s to the {@link FlightBookingSystem}
+ * @author Jack Atkins
+ * @author Daniel Jukes
+ */
 public class AddCustomerWindow extends JFrame implements ActionListener {
 	
 	private MainWindow mainWindow;
@@ -19,12 +26,17 @@ public class AddCustomerWindow extends JFrame implements ActionListener {
 	
 	private JButton addButton = new JButton("Add");
 	private JButton cancelButton = new JButton("Cancel");
-	
+	/**
+	 * Initialize the window
+	 * @param mainWindow as {@link MainWindow}
+	 */
 	public AddCustomerWindow(MainWindow mainWindow) {
 		this.mainWindow = mainWindow;
 		initialize();
 	}
-	
+	/**
+	 * Create all the GUI elements and add them to the {@link JFrame}
+	 */
 	private void initialize()  {
 		setTitle("Add a New Customer");
 		
@@ -65,7 +77,10 @@ public class AddCustomerWindow extends JFrame implements ActionListener {
 			this.setVisible(false);
 		}
 	}
-	
+	/**
+	 * Adds new customer
+	 * <p>Uses entered data and the {@link AddCustomer} command to add a new {@link Customer} to the {@link FlightBookingSystem} 
+	 */
 	private void addCustomer() {
 		try {
 			String name = customerNameField.getText();

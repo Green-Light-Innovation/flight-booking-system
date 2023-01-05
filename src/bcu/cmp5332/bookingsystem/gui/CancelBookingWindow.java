@@ -3,15 +3,13 @@ package bcu.cmp5332.bookingsystem.gui;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
 import javax.swing.*;
 
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 import bcu.cmp5332.bookingsystem.model.*;
 
 /**
- * GUI class used by the user to remove bookings from the {@link FlightBookingSystem}
+ * GUI pop-up class used by the user to remove {@link Booking}s from the {@link FlightBookingSystem}
  * @author Jack Atkins
  * @author Daniel Jukes
  */
@@ -26,6 +24,10 @@ public class CancelBookingWindow extends JFrame implements ActionListener {
 	
 	private Customer selectedCustomer;
 	
+	/**
+	 * Initialize the window
+	 * @param mainWindow as {@link MainWindow}
+	 */
 	public CancelBookingWindow(MainWindow mainWindow) {
 		this.mainWindow = mainWindow;
 		this.flightBookingSystem = mainWindow.getFlightBookingSystem();
@@ -33,7 +35,7 @@ public class CancelBookingWindow extends JFrame implements ActionListener {
 	}
 	
 	/**
-	 * Initilize the GUI
+	 * Create all the GUI elements and add them to the {@link JFrame}
 	 */
 	private void initialize() {
 		setSize(300,300);
@@ -84,7 +86,7 @@ public class CancelBookingWindow extends JFrame implements ActionListener {
 	}
 	
 	/**
-	 * Loads the customers into the {@link JComboBox}
+	 * Loads the {@link Customer}s into the {@link JComboBox}
 	 */
 	private void loadCustomerData() {
 		flightBookingSystem.getCustomers().forEach(customer -> {
@@ -93,7 +95,7 @@ public class CancelBookingWindow extends JFrame implements ActionListener {
 	}
 	
 	/**
-	 * Loads the customers booked flights into the {@link JList}
+	 * Loads the {@link Customer}s booked {@link Flight}s into the {@link JList}
 	 */
 	private void loadCustomerBookings() {
 		try {
@@ -125,7 +127,7 @@ public class CancelBookingWindow extends JFrame implements ActionListener {
 	}
 	
 	/**
-	 * Removes the customer from the flight and the booking from the customer
+	 * Removes the {@link Customer} from the {@link Flight} and the {@link Booking} from the customer
 	 * @throws FlightBookingSystemException
 	 */
 	private void cancelBooking() throws FlightBookingSystemException {

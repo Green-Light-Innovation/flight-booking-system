@@ -12,7 +12,7 @@ import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
 
 
 /**
- * GUI pop-up used to view passengers on a given flight through the {@link FlightBookingSystem}
+ * GUI pop-up used to view {@link Customer}s on a given {@link Flight} through the {@link FlightBookingSystem}
  * @author Jack Atkins
  * @author Daniel Jukes
  */
@@ -24,7 +24,11 @@ public class PassengersWindow extends JFrame {
 	
 	private int flightId;
 	private Flight flight;
-	
+	/**
+	 * Initialize the window
+	 * @param mainWindow as {@link MainWindow}
+	 * @param flightId as integer for current {@link Flight}
+	 */
 	public PassengersWindow(MainWindow mainWindow, int flightId) {
 		this.mainWindow = mainWindow;
 		this.flightId = flightId;
@@ -32,6 +36,9 @@ public class PassengersWindow extends JFrame {
 		initialize();
 	}
 	
+	/**
+	 * Create all the GUI elements and add them to the {@link JFrame}
+	 */
 	private void initialize() {
 		try {
 			flight = flightBookingSystem.getFlightByID(flightId);

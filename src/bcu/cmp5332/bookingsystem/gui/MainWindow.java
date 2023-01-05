@@ -1,6 +1,5 @@
 package bcu.cmp5332.bookingsystem.gui;
 
-import bcu.cmp5332.bookingsystem.data.FlightBookingSystemData;
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 import bcu.cmp5332.bookingsystem.model.Flight;
 import bcu.cmp5332.bookingsystem.model.Customer;
@@ -8,13 +7,9 @@ import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
 import bcu.cmp5332.bookingsystem.commands.Exit;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,11 +17,14 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.UIManager;
 
+/**
+ * Main window used as basis for GUI
+ * @author Jack Atkins
+ * @author Daniel Jukes
+ */
 public class MainWindow extends JFrame implements ActionListener {
 
     private JMenuBar menuBar;
@@ -58,19 +56,26 @@ public class MainWindow extends JFrame implements ActionListener {
 
     private FlightBookingSystem fbs;
 
+	/**
+	 * Initialize the window
+	 * @param fbs as {@link FlightBookingSystem}
+	 */
     public MainWindow(FlightBookingSystem fbs) {
 
         initialize();
         this.fbs = fbs;
     }
-    
+    /**
+     * 
+     * @return {@link FlightBookingSystem}
+     */
     public FlightBookingSystem getFlightBookingSystem() {
         return fbs;
     }
 
-    /**
-     * Initialize the contents of the frame.
-     */
+	/**
+	 * Create all the GUI elements and add them to the {@link JFrame}
+	 */
     private void initialize() {
 
         try {
@@ -209,7 +214,9 @@ public class MainWindow extends JFrame implements ActionListener {
             }
         }
     }
-
+	/**
+	 * Displays all non-cancelled {@link Flight}s
+	 */
     public void displayFlights() {
         List<Flight> flightsList = fbs.getFlights();
         // Button for showing flight passengers
@@ -248,6 +255,9 @@ public class MainWindow extends JFrame implements ActionListener {
         this.revalidate();
     }
     
+	/**
+	 * Displays all current {@link Customer}s
+	 */
     public void displayCustomers() {
     	List<Customer> customersList = fbs.getCustomers();
         // Button for showing Customer bookings

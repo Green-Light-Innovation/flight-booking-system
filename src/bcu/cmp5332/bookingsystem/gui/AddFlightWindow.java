@@ -3,6 +3,10 @@ package bcu.cmp5332.bookingsystem.gui;
 import bcu.cmp5332.bookingsystem.commands.AddFlight;
 import bcu.cmp5332.bookingsystem.commands.Command;
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
+import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
+import bcu.cmp5332.bookingsystem.model.Flight;
+
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -17,7 +21,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
-
+/**
+ * GUI pop-up used to add new {@link Flight}s to the {@link FlightBookingSystem}
+ * @author Jack Atkins
+ * @author Daniel Jukes
+ */
 public class AddFlightWindow extends JFrame implements ActionListener {
 
     private MainWindow mw;
@@ -30,15 +38,19 @@ public class AddFlightWindow extends JFrame implements ActionListener {
 
     private JButton addBtn = new JButton("Add");
     private JButton cancelBtn = new JButton("Cancel");
-
+    
+	/**
+	 * Initialize the window
+	 * @param mw as {@link MainWindow}
+	 */
     public AddFlightWindow(MainWindow mw) {
         this.mw = mw;
         initialize();
     }
 
-    /**
-     * Initialize the contents of the frame.
-     */
+	/**
+	 * Create all the GUI elements and add them to the {@link JFrame}
+	 */
     private void initialize() {
 
         try {
@@ -85,14 +97,18 @@ public class AddFlightWindow extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == addBtn) {
-            addBook();
+            addFlight();
         } else if (ae.getSource() == cancelBtn) {
             this.setVisible(false);
         }
 
     }
-
-    private void addBook() {
+    
+	/**
+	 * Adds new Flight
+	 * <p>Uses entered data and the {@link AddFlight} command to add a new {@link Flight} to the {@link FlightBookingSystem} 
+	 */
+    private void addFlight() {
         try {
             String flightNumber = flightNoText.getText();
             String origin = originText.getText();

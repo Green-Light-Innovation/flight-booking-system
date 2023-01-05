@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 /**
- * GUI pop-up used to view bookings for a given customer through the {@link FlightBookingSystem}
+ * GUI pop-up used to view {@link Booking}s for a given {@link Customer} through the {@link FlightBookingSystem}
  * @author Jack Atkins
  * @author Daniel Jukes
  */
@@ -23,6 +23,11 @@ public class BookingsWindow extends JFrame{
 	private int customerID;
 	private Customer customer;
 
+	/**
+	 * Initialize the window
+	 * @param mainWindow as {@link MainWindow}
+	 * @param customerID as integer for current {@link Customer}
+	 */
 	public BookingsWindow(MainWindow mainWindow, int customerID) {
 		this.mainWindow = mainWindow;
 		this.customerID = customerID;
@@ -30,6 +35,9 @@ public class BookingsWindow extends JFrame{
 		initialize();
 	}
 	
+	/**
+	 * Create all the GUI elements and add them to the {@link JFrame}
+	 */
 	private void initialize() {
 		try {
 			customer = flightBookingSystem.getCustomerByID(customerID);
