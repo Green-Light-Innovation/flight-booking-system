@@ -209,11 +209,14 @@ public class Flight {
      */
     public void addPassenger(Customer passenger) throws FlightBookingSystemException {
     	// Check if passenger is already booked for this flight
-    	// TODO Need to make sure no more passengers can be added past max capacity
     	for(Customer flightPassenger : passengers) {
     		if (passenger.getID() == flightPassenger.getID()) {
     			throw new FlightBookingSystemException("This passenger is already booked for this flight.");
     		}
+    	}
+    	// No passengers can be booked past max capacity
+    	if (passengers.size() == passengerCapacity) {
+    		throw new FlightBookingSystemException("Flight is fully booked");
     	}
     	
     	passengers.add(passenger);
