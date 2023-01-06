@@ -60,6 +60,7 @@ public class FlightDataManager implements DataManager {
     @Override
     public void storeData(FlightBookingSystem fbs) throws IOException {
         try (PrintWriter out = new PrintWriter(new FileWriter(RESOURCE))) {
+        	// Save ALL flights, including removed ones
             for (Flight flight : fbs.getFlights()) {
                 out.print(flight.getId() + SEPARATOR);
                 out.print(flight.getFlightNumber() + SEPARATOR);

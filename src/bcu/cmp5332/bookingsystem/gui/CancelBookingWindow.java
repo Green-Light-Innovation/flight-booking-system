@@ -82,7 +82,7 @@ public class CancelBookingWindow extends JFrame implements ActionListener {
 	 * @throws FlightBookingSystemException
 	 */
 	private Customer getSelectedCustomer() throws FlightBookingSystemException {
-		return flightBookingSystem.getCustomers().get( customerSelection.getSelectedIndex() );
+		return flightBookingSystem.getCurrentCustomers().get( customerSelection.getSelectedIndex() );
 	}
 	
 	/**

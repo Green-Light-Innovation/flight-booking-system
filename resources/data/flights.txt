@@ -1,4 +1,4 @@
-1::LH2560::Birmingham::Munich::2022-11-21::100::40.0::false::
+1::LH2560::London::Munich::2022-11-21::100::40.0::true::
 2::LP3560::London::Paris::2022-11-22::120::140.0::false::
 3::LM2781::London::Munich::2022-11-23::80::70.0::false::
 4::LM2781::Munich::London::2022-11-24::80::70.0::false::

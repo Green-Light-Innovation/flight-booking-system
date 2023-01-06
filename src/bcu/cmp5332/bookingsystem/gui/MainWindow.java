@@ -179,7 +179,7 @@ public class MainWindow extends JFrame implements ActionListener {
             new AddFlightWindow(this);
             
         } else if (ae.getSource() == flightsDel) {
-        	//TODO 70-79%
+        	new DelFlightWindow(this);
         	
         } else if (ae.getSource() == bookingsIssue) {
         	new IssueBookingWindow(this);
@@ -194,7 +194,8 @@ public class MainWindow extends JFrame implements ActionListener {
             new AddCustomerWindow(this);
             
         } else if (ae.getSource() == custDel) {
-        	//TODO 70-79%
+        	new DelCustomerWindow(this);
+        	
         } else if (ae.getSource() == viewPassengers) {
         	try {
         		int row = flightTable.getSelectedRow();

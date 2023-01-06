@@ -99,8 +99,8 @@ public class IssueBookingWindow extends JFrame implements ActionListener {
 	 */
 	private void addBooking() {
 		// Fetch customers and flights using the combo boxes getSelectedIndex method
-		Customer customer = flightBookingSystem.getCustomers().get( customerSelection.getSelectedIndex() );
-		Flight flight = flightBookingSystem.getFlights().get( flightSelection.getSelectedIndex() );
+		Customer customer = flightBookingSystem.getCurrentCustomers().get( customerSelection.getSelectedIndex() );
+		Flight flight = flightBookingSystem.getCurrentFlights().get( flightSelection.getSelectedIndex() );
 		
 		try {
 			new AddBooking(customer.getID(), flight.getId()).execute(flightBookingSystem);

@@ -58,7 +58,7 @@ public class FlightBookingSystem {
         return flights.get(id);
     }
     /**
-     * To be used on the back-end for fetching ALL customers
+     * To be used for fetching ALL customers
      * @return an unmodifiable list of flights as {@link List}&lt;{@link Customer}&gt;
      */
     public List<Customer> getCustomers() {
@@ -68,7 +68,7 @@ public class FlightBookingSystem {
     	return Collections.unmodifiableList(customerList);
     }
     /**
-     * To be used when customer records are shown to users
+     * To be used to get non-removed customers
      * @return an unmodifiable list of non-removed customers as {@link List}&lt;{@link Customer}&gt;
      */
     public List<Customer> getCurrentCustomers() {

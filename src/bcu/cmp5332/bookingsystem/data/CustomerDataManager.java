@@ -84,6 +84,7 @@ public class CustomerDataManager implements DataManager {
     @Override
     public void storeData(FlightBookingSystem fbs) throws IOException {
         try (PrintWriter out = new PrintWriter(new FileWriter(RESOURCE))) {
+        	// Must Access ALL customers
         	for (Customer customer : fbs.getCustomers()) {
         		out.print(customer.getID() + SEPARATOR);
         		out.print(customer.getName() + SEPARATOR);
