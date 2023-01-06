@@ -85,6 +85,17 @@ public class FlightBookingSystem {
         }
         flights.put(flight.getId(), flight);
     }
+    /**
+     * Removes a flight from the list of flights in the system
+     * @param flight as {@link Flight}
+     */
+    public void removeFlight(Flight flight) throws IllegalArgumentException {
+        if (flights.containsKey(flight.getId())) {
+        	flights.remove(flight.getId());
+        } else {
+            throw new IllegalArgumentException("No flight found.");	
+        }
+    }
     
     /**
      * Add a customer to the list of customers in the system
@@ -106,5 +117,16 @@ public class FlightBookingSystem {
     	}
     	
     	customers.put(customer.getID(), customer);
+    }
+    /**
+     * Removes a customer from the list of customers in the system
+     * @param Customer as {@link Customer}
+     */
+    public void removeCustomer(Customer customer) throws IllegalArgumentException {
+        if (customers.containsKey(customer.getID())) {
+        	flights.remove(customer.getID());
+        } else {
+            throw new IllegalArgumentException("No customer found.");	
+        }
     }
 }

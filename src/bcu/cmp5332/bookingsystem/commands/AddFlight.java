@@ -1,8 +1,11 @@
 package bcu.cmp5332.bookingsystem.commands;
 
+import bcu.cmp5332.bookingsystem.data.FlightBookingSystemData;
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 import bcu.cmp5332.bookingsystem.model.Flight;
 import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
+
+import java.io.IOException;
 import java.time.LocalDate;
 
 /**
@@ -45,6 +48,14 @@ public class AddFlight implements  Command {
         
         Flight flight = new Flight(++maxId, flightNumber, origin, destination, departureDate, passengerCapacity, price);
         flightBookingSystem.addFlight(flight);
-        System.out.println("Flight #" + flight.getId() + " added.");
+        try {
+			FlightBookingSystemData.store(flightBookingSystem);
+        	System.out.println("Flight #" + flight.getId() + " added.");
+			
+		} catch (IOException exc) {
+			flightBookingSystem.removeFlight(flight);
+			throw new FlightBookingSystemException("Flight could not be created, rolling back changes...\nError: " + exc);
+
+		}
     }
 }

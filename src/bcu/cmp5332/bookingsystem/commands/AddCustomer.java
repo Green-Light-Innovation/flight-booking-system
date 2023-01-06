@@ -1,5 +1,8 @@
 package bcu.cmp5332.bookingsystem.commands;
 
+import java.io.IOException;
+
+import bcu.cmp5332.bookingsystem.data.FlightBookingSystemData;
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 import bcu.cmp5332.bookingsystem.model.Customer;
 import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
@@ -37,6 +40,13 @@ public class AddCustomer implements Command {
         
         Customer customer = new Customer(++maxId, name, phone, email);
         flightBookingSystem.addCustomer(customer);
-        System.out.println("Customer #" + customer.getID() + " added.");
+		try {
+			FlightBookingSystemData.store(flightBookingSystem);
+			System.out.println("Customer #" + customer.getID() + " added.");
+			
+		} catch (IOException exc) {
+			flightBookingSystem.removeCustomer(customer);
+			throw new FlightBookingSystemException("Customer could not be added, rolling back changes...\nError: " + exc);
+		}
     }
 }

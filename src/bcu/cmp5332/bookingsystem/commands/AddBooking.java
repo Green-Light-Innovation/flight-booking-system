@@ -1,7 +1,11 @@
 package bcu.cmp5332.bookingsystem.commands;
 
+import java.io.IOException;
+
+import bcu.cmp5332.bookingsystem.data.FlightBookingSystemData;
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 import bcu.cmp5332.bookingsystem.model.*;
+
 
 /**
  * {@link Command} class that adds a {@link Booking} to the flight booking system
@@ -21,20 +25,28 @@ public class AddBooking implements Command {
 		this.CUSTOMER_ID = customerID;
 	}
 	
+	
 	@Override
 	public void execute(FlightBookingSystem flightBookingSystem) throws FlightBookingSystemException {
 		try {
-		Customer customer = flightBookingSystem.getCustomerByID(CUSTOMER_ID);
-		Flight flight = flightBookingSystem.getFlightByID(FLIGHT_ID);
-		//TODO Add booking status?
-		Booking booking = new Booking(customer, flight, flightBookingSystem.getSystemDate());
+			Customer customer = flightBookingSystem.getCustomerByID(CUSTOMER_ID);
+			Flight flight = flightBookingSystem.getFlightByID(FLIGHT_ID);
+			Booking booking = new Booking(customer, flight, flightBookingSystem.getSystemDate());
+			
+			customer.addBooking(booking);
+			flight.addPassenger(customer);
+			try {
+				FlightBookingSystemData.store(flightBookingSystem);
+				
+			} catch (IOException exc) {
+				customer.cancelBooking(flight);
+				flight.removePassenger(customer);
+				throw new FlightBookingSystemException("Booking could not be made, rolling back changes...\nError: " + exc);
+			}
 		
-		customer.addBooking(booking);
-		flight.addPassenger(customer);
-		
-		System.out.println("Booking for " + customer.getName() + " for flight: " + flight.getFlightNumber() + " has been successfully made");
+		//System.out.println("Booking for " + customer.getName() + " for flight: " + flight.getFlightNumber() + " has been successfully made");
 		} catch (FlightBookingSystemException ex) {
-			throw new FlightBookingSystemException("Booking could be made.\nError: " + ex);
+			throw new FlightBookingSystemException("Booking could not be made.\nError: " + ex);
 		}
 	}
 
