@@ -15,7 +15,7 @@ public class ListFlights implements Command {
 
     @Override
     public void execute(FlightBookingSystem flightBookingSystem) throws FlightBookingSystemException {
-        List<Flight> flights = flightBookingSystem.getFlights();
+        List<Flight> flights = flightBookingSystem.getCurrentFlights();
         for (Flight flight : flights) {
             System.out.println(flight.getDetailsShort());
         }

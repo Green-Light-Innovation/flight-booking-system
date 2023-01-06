@@ -1,2 +1,10 @@
-1::Abdel-Rahman Tawil::07555555555::abdel-rahman-twali@mail.com::
-2::Kostas Vlachos::07596454545::kostas.vlachos@mail.com::
+1::Abdel-Rahman Tawil::07555555555::abdel-rahman-twali@mail.com::true::
+2::Kostas Vlachos::07596454545::kostas.vlachos@mail.com::true::
+3::James Smith::07444444444::James.Smith@mail.com::false::
+4::Jeremiah Smith::07444444445::Jeremiah.Smith@mail.com::false::
+5::Charles Smith::07444444446::Charles.Smith@mail.com::false::
+6::Samantha Todd::07444444447::Samantha.Todd@mail.com::false::
+7::Thomas Brown::07444444448::Thomas.Brown@mail.com::false::
+8::Sarah Duke::07444444449::Sarah.Duke@mail.com::false::
+9::Bill Tomlinson::07444444450::Bill.Tomlinson@mail.com::false::
+10::Stanley Davie::07444444451::Stanley.Davie@mail.com::false::

@@ -89,7 +89,7 @@ public class CancelBookingWindow extends JFrame implements ActionListener {
 	 * Loads the {@link Customer}s into the {@link JComboBox}
 	 */
 	private void loadCustomerData() {
-		flightBookingSystem.getCustomers().forEach(customer -> {
+		flightBookingSystem.getCurrentCustomers().forEach(customer -> {
 			customerSelection.addItem(customer.getEmail());
 		});
 	}

@@ -22,6 +22,7 @@ public class Flight {
     private LocalDate departureDate;
     private int passengerCapacity;
     private double price;
+    private boolean isRemoved = false;
 
     private final Set<Customer> passengers;
     
@@ -60,6 +61,16 @@ public class Flight {
     public void setId(int id) {
         this.id = id;
     }
+    /**
+     * @return the removed status as {@link boolean}
+     */
+	public boolean isRemoved() { return isRemoved; }
+    
+    /**
+     * Set the customer's removed status
+     * @param isRemoved as {@link boolean}
+     */
+	public void setRemoved(boolean isRemoved) { this.isRemoved = isRemoved;}
     
     /**
      * @return the flight number as {@link String}
@@ -231,4 +242,5 @@ public class Flight {
     private double roundPrice(double price) {
     	return Double.parseDouble(String.format("%.2f", price));
     }
+
 }

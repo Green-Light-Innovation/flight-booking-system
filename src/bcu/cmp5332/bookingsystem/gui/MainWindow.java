@@ -218,7 +218,7 @@ public class MainWindow extends JFrame implements ActionListener {
 	 * Displays all non-cancelled {@link Flight}s
 	 */
     public void displayFlights() {
-        List<Flight> flightsList = fbs.getFlights();
+        List<Flight> flightsList = fbs.getCurrentFlights();
         // Button for showing flight passengers
         viewPassengers = new JButton("View Passengers");
         viewPassengers.addActionListener(this);
@@ -259,7 +259,7 @@ public class MainWindow extends JFrame implements ActionListener {
 	 * Displays all current {@link Customer}s
 	 */
     public void displayCustomers() {
-    	List<Customer> customersList = fbs.getCustomers();
+    	List<Customer> customersList = fbs.getCurrentCustomers();
         // Button for showing Customer bookings
         viewBookings = new JButton("View Bookings");
         viewBookings.addActionListener(this);

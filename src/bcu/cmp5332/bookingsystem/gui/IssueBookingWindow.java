@@ -47,11 +47,11 @@ public class IssueBookingWindow extends JFrame implements ActionListener {
 		DefaultComboBoxModel<String> customerEmails = new DefaultComboBoxModel<>();
 		DefaultComboBoxModel<String> flightNumbers = new DefaultComboBoxModel<>();
 		
-		flightBookingSystem.getCustomers().forEach(customer -> {
+		flightBookingSystem.getCurrentCustomers().forEach(customer -> {
 			customerEmails.addElement(customer.getEmail());
 		});
 		
-		flightBookingSystem.getFlights().forEach(flight -> {
+		flightBookingSystem.getCurrentFlights().forEach(flight -> {
 			flightNumbers.addElement(flight.getFlightNumber());
 		});
 		

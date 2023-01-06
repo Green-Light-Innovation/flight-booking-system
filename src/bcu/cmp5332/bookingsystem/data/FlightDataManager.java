@@ -29,6 +29,11 @@ public class FlightDataManager implements DataManager {
             while (sc.hasNextLine()) {
                 String line = sc.nextLine();
                 String[] properties = line.split(SEPARATOR, -1);
+        		// Properties has length of 6 due to trailing ::
+        		if (properties.length != 9) {
+        			throw new FlightBookingSystemException("Unable to parse Booking ID " + properties[0] + " on line: " + line_idx + "\nMalformed Data");
+        		}
+        		
                 try {
                     int id = Integer.parseInt(properties[0]);
                     String flightNumber = properties[1];
@@ -37,12 +42,16 @@ public class FlightDataManager implements DataManager {
                     LocalDate departureDate = LocalDate.parse(properties[4]);
                     int passengerCapacity = Integer.parseInt(properties[5]);
                     double price = Double.parseDouble(properties[6]);
+                    boolean isRemoved = Boolean.parseBoolean(properties[7]);
+                    
                     Flight flight = new Flight(id, flightNumber, origin, destination, departureDate, passengerCapacity, price);
+                    flight.setRemoved(isRemoved);
                     fbs.addFlight(flight);
                 } catch (NumberFormatException ex) {
-                    throw new FlightBookingSystemException("Unable to parse book id " + properties[0] + " on line " + line_idx
-                        + "\nError: " + ex);
-                }
+                    throw new FlightBookingSystemException("Unable to parse booking id " + properties[0] + " on line " + line_idx + "\nError: " + ex);
+                } catch (IndexOutOfBoundsException ex) {
+                    throw new FlightBookingSystemException("Unable to parse booking id " + properties[0] + " on line " + line_idx + "\nError: " + ex);
+        		}
                 line_idx++;
             }
         }
@@ -59,6 +68,7 @@ public class FlightDataManager implements DataManager {
                 out.print(flight.getDepartureDate() + SEPARATOR);
                 out.print(flight.getPassengerCapacity() + SEPARATOR);
                 out.print(flight.getPrice() + SEPARATOR);
+                out.print(flight.isRemoved() + SEPARATOR);
                 out.println();
             }
         }

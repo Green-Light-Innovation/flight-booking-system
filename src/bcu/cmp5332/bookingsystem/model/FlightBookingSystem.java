@@ -29,6 +29,21 @@ public class FlightBookingSystem {
         List<Flight> out = new ArrayList<>(flights.values());
         return Collections.unmodifiableList(out);
     }
+    /**
+     * @return an unmodifiable list of non-removed flights as {@link List}&lt;{@link Flight}&gt;
+     */
+    public List<Flight> getCurrentFlights() {
+        List<Flight> out = new ArrayList<>();
+        for (Flight flight : flights.values()) {
+        	// Check that flight is NOT removed
+        	if (! flight.isRemoved()) {
+        		out.add(flight);
+        	}
+        }
+        
+        
+        return Collections.unmodifiableList(out);
+    }
     
     /**
      * Find a specific flight in the system by ID
@@ -42,8 +57,8 @@ public class FlightBookingSystem {
         }
         return flights.get(id);
     }
-    
     /**
+     * To be used on the back-end for fetching ALL customers
      * @return an unmodifiable list of flights as {@link List}&lt;{@link Customer}&gt;
      */
     public List<Customer> getCustomers() {
@@ -51,6 +66,20 @@ public class FlightBookingSystem {
     	customers.forEach((id, customer) -> { customerList.add(customer); }); // Add customer objects to list
     	
     	return Collections.unmodifiableList(customerList);
+    }
+    /**
+     * To be used when customer records are shown to users
+     * @return an unmodifiable list of non-removed customers as {@link List}&lt;{@link Customer}&gt;
+     */
+    public List<Customer> getCurrentCustomers() {
+    	List<Customer> out = new ArrayList<>();
+    	for (Customer customer : customers.values()) {
+    		if (! customer.isRemoved()) {
+    			out.add(customer);
+    		}
+    	}
+    	
+    	return Collections.unmodifiableList(out);
     }
     
     /**
@@ -86,12 +115,12 @@ public class FlightBookingSystem {
         flights.put(flight.getId(), flight);
     }
     /**
-     * Removes a flight from the list of flights in the system
+     * Sets flight as removed
      * @param flight as {@link Flight}
      */
     public void removeFlight(Flight flight) throws IllegalArgumentException {
         if (flights.containsKey(flight.getId())) {
-        	flights.remove(flight.getId());
+        	flight.setRemoved(true);
         } else {
             throw new IllegalArgumentException("No flight found.");	
         }
@@ -124,7 +153,7 @@ public class FlightBookingSystem {
      */
     public void removeCustomer(Customer customer) throws IllegalArgumentException {
         if (customers.containsKey(customer.getID())) {
-        	flights.remove(customer.getID());
+        	customer.setRemoved(true);
         } else {
             throw new IllegalArgumentException("No customer found.");	
         }

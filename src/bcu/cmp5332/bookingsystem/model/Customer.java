@@ -15,6 +15,7 @@ public class Customer {
     private String name;
     private String phone;
     private String email;
+    private boolean isRemoved = false;
     private final List<Booking> bookings = new ArrayList<>();
     
     /**
@@ -40,6 +41,11 @@ public class Customer {
      */
     public String getName() { return name; }
     
+    /**
+     * @return the removed status as {@link boolean}
+     */
+	public boolean isRemoved() { return isRemoved; }
+
     /**
      * @return the customer's phone number as {@link String}
      */
@@ -103,6 +109,12 @@ public class Customer {
     public void setPhone(String phone) { this.phone = phone; }
     
     /**
+     * Set the customer's removed status
+     * @param isRemoved as {@link boolean}
+     */
+	public void setRemoved(boolean isRemoved) { this.isRemoved = isRemoved;}
+    
+    /**
      * Set the customer's email
      * @param email as {@link String}
      */
@@ -127,7 +139,7 @@ public class Customer {
     
     /**
      * Removes the specified booking from the customer's list of bookings
-     * @throws FlightBookingSystemException if the customer’s list of bookings doesn’t contain a booking for the flight that is given as a parameter
+     * @throws FlightBookingSystemException if the customerï¿½s list of bookings doesnï¿½t contain a booking for the flight that is given as a parameter
      * @param flight as {@link Flight}
      */
     public void cancelBooking(Flight flight) throws FlightBookingSystemException {
@@ -141,4 +153,5 @@ public class Customer {
     	
     	throw new FlightBookingSystemException("Could not find the specified flight to cancel");
     }
+
 }
