@@ -19,9 +19,10 @@ public class Customer {
     private final List<Booking> bookings = new ArrayList<>();
     
     /**
-     * @param id
-     * @param name
-     * @param phone
+     * @param id as {@link String}
+     * @param name as {@link String}
+     * @param phone as {@link String}
+     * @param email as {@link String}
      */
     public Customer(int id, String name, String phone, String email) {
     	this.id		= id;

@@ -33,6 +33,7 @@ public class CustomerDataManager implements DataManager {
     /**
      * Create a {@link CustomerDataManager} object with a custom resources location
      * <p> used for testing
+     * @param resource as resource location
      */
     public CustomerDataManager(String resource) {
     	this.RESOURCE = resource;

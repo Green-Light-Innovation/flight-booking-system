@@ -29,6 +29,8 @@ public class AddFlight implements  Command {
      * @param origin as {@link Integer}
      * @param destination as {@link Integer}
      * @param departureDate as {@link LocalDate}
+     * @param price as {@link double}
+     * @param passengerCapacity as {@link int}
      */
     public AddFlight(String flightNumber, String origin, String destination, LocalDate departureDate, int passengerCapacity, double price) {
         this.flightNumber = flightNumber;
@@ -40,7 +42,7 @@ public class AddFlight implements  Command {
     }
     /**
      * Constructs {@link Flight} object and saves it into a FlightBookingSystem object
-     * @param fbs as {@link FlightBookingSystem} to execute command on
+     * @param flightBookingSystem as {@link FlightBookingSystem} to execute command on
      * @throws FlightBookingSystemException when an error occurs while adding new flight
      */
     @Override

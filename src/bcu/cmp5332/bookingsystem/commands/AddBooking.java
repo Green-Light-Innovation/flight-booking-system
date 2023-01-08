@@ -30,7 +30,7 @@ public class AddBooking implements Command {
      * Fetches {@link Customer} and {@link Flight} from given ID's,
      * constructs a {@link Booking}, assigns this booking to this customer,
      * then assigns customer to flight
-     * @param fbs as {@link FlightBookingSystem} to execute command on
+     * @param flightBookingSystem as {@link FlightBookingSystem} to execute command on
      * @throws FlightBookingSystemException when an error occurs while adding new booking
      */
 	@Override

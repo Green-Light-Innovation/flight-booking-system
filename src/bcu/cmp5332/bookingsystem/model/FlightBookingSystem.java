@@ -149,7 +149,7 @@ public class FlightBookingSystem {
     }
     /**
      * Removes a customer from the list of customers in the system
-     * @param Customer as {@link Customer}
+     * @param customer as {@link Customer}
      * @throws IllegalArgumentException when the given customer cannot be found in the system
 
      */

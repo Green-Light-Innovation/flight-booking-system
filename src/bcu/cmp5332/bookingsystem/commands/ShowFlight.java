@@ -24,7 +24,7 @@ public class ShowFlight implements Command {
 	
 	/**
 	 * Prints given {@link Flight}s details 
-     * @param fbs as {@link FlightBookingSystem} to execute command on 
+     * @param flightBookingSystem as {@link FlightBookingSystem} to execute command on 
      * @throws FlightBookingSystemException when an error occurs while printing {@link Flight}s details
      */
 	@Override

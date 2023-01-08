@@ -27,7 +27,7 @@ public interface Command {
     /**
      * The code that a command will run
      * @param flightBookingSystem as {@link FlightBookingSystem}
-     * @throws FlightBookingSystemException
+     * @throws FlightBookingSystemException on command error
      */
     public void execute(FlightBookingSystem flightBookingSystem) throws FlightBookingSystemException;
     

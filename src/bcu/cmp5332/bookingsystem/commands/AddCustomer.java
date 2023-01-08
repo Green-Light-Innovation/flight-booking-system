@@ -32,7 +32,7 @@ public class AddCustomer implements Command {
     
     /**
      * Constructs {@link Customer} object and saves it into a FlightBookingSystem object
-     * @param fbs as {@link FlightBookingSystem} to execute command on
+     * @param flightBookingSystem as {@link FlightBookingSystem} to execute command on
      * @throws FlightBookingSystemException when an error occurs while adding new customer
      */
     @Override

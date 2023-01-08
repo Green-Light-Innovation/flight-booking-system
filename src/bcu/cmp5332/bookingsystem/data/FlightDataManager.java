@@ -30,6 +30,7 @@ public class FlightDataManager implements DataManager {
     /**
      * Create a {@link BookingDataManager} object with a custom resources location
      * <p> used for testing
+     * @param resource as resources location
      */
     public FlightDataManager(String resource) {
     	this.RESOURCE = resource;

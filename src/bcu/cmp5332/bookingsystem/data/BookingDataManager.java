@@ -30,6 +30,7 @@ public class BookingDataManager implements DataManager {
     /**
      * Create a {@link BookingDataManager} object with a custom resources location
      * <p> used for testing
+     * @param resource as custom resource location
      */
     public BookingDataManager(String resource) {
     	this.RESOURCE = resource;
