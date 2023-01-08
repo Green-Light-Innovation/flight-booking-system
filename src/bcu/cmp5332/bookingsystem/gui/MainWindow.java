@@ -21,7 +21,7 @@ import javax.swing.JTable;
 import javax.swing.UIManager;
 
 /**
- * Main window used as basis for GUI
+ * Main window used as the foundation for the GUI
  * @author Jack Atkins
  * @author Daniel Jukes
  */
@@ -66,7 +66,7 @@ public class MainWindow extends JFrame implements ActionListener {
         this.fbs = fbs;
     }
     /**
-     * 
+     * Returns the FlightBookingSystem object
      * @return {@link FlightBookingSystem}
      */
     public FlightBookingSystem getFlightBookingSystem() {
@@ -74,7 +74,7 @@ public class MainWindow extends JFrame implements ActionListener {
     }
 
 	/**
-	 * Create all the GUI elements and add them to the {@link JFrame}
+	 * Creates all the GUI elements and adds them to the {@link JFrame}
 	 */
     private void initialize() {
 
@@ -149,16 +149,10 @@ public class MainWindow extends JFrame implements ActionListener {
         setAutoRequestFocus(true);
         toFront();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-/* Uncomment the following line to not terminate the console app when the window is closed */
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);        
 
     }	
 
-/* Uncomment the following code to run the GUI version directly from the IDE */
-//    public static void main(String[] args) throws IOException, FlightBookingSystemException {
-//        FlightBookingSystem fbs = FlightBookingSystemData.load();
-//        new MainWindow(fbs);			
-//    }
 
 
 
@@ -216,7 +210,7 @@ public class MainWindow extends JFrame implements ActionListener {
         }
     }
 	/**
-	 * Displays all non-cancelled {@link Flight}s
+	 * Displays all non-removed {@link Flight}s in the main window
 	 */
     public void displayFlights() {
         List<Flight> flightsList = fbs.getCurrentFlights();
@@ -257,7 +251,7 @@ public class MainWindow extends JFrame implements ActionListener {
     }
     
 	/**
-	 * Displays all current {@link Customer}s
+	 * Displays all non-removed {@link Customer}s in the main window
 	 */
     public void displayCustomers() {
     	List<Customer> customersList = fbs.getCurrentCustomers();

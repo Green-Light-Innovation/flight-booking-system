@@ -6,6 +6,12 @@ import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
 
 import java.io.*;
 
+/**
+ * Main function that starts the FlightBookingSystem
+ * @author Daniel Jukes
+ * @author Jack Atkins
+ * 
+ */
 public class Main {
 
     public static void main(String[] args) throws IOException, FlightBookingSystemException {

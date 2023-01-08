@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 /**
+ * Class that represents core functionality of the program
  * @author Jack Atkins
  * @author Daniel Jukes
  */
@@ -23,14 +24,16 @@ public class FlightBookingSystem {
     }
     
     /**
-     * @return an unmodifiable list of flights as {@link List}&lt;{@link Flight}&gt;
+     * Fetches all flights, including flights which are "removed" from the system
+     * @return an unmodifiable list of flights as as {@link List}&lt;{@link Flight}&gt;
      */
     public List<Flight> getFlights() {
         List<Flight> out = new ArrayList<>(flights.values());
         return Collections.unmodifiableList(out);
     }
     /**
-     * @return an unmodifiable list of non-removed flights as {@link List}&lt;{@link Flight}&gt;
+     * Fetches all flights which are not "removed" from the system
+     * @return an unmodifiable list of flights as {@link List}&lt;{@link Flight}&gt;
      */
     public List<Flight> getCurrentFlights() {
         List<Flight> out = new ArrayList<>();
@@ -40,13 +43,11 @@ public class FlightBookingSystem {
         		out.add(flight);
         	}
         }
-        
-        
         return Collections.unmodifiableList(out);
     }
     
     /**
-     * Find a specific flight in the system by ID
+     * Find a specific flight in the system by Flight ID
      * @param id as {@link Integer}
      * @return a {@link Flight} object with the corresponding ID
      * @throws FlightBookingSystemException if a flight with the specified ID could not be found
@@ -58,17 +59,16 @@ public class FlightBookingSystem {
         return flights.get(id);
     }
     /**
-     * To be used for fetching ALL customers
-     * @return an unmodifiable list of flights as {@link List}&lt;{@link Customer}&gt;
+     * Fetches all customers, including customers which are "removed" from the system
+     * @return an unmodifiable list of customers as {@link List}&lt;{@link Customer}&gt;
      */
     public List<Customer> getCustomers() {
     	List<Customer> customerList = new ArrayList<>();
     	customers.forEach((id, customer) -> { customerList.add(customer); }); // Add customer objects to list
-    	
     	return Collections.unmodifiableList(customerList);
     }
     /**
-     * To be used to get non-removed customers
+     * Fetches all customers which are not "removed" from the system
      * @return an unmodifiable list of non-removed customers as {@link List}&lt;{@link Customer}&gt;
      */
     public List<Customer> getCurrentCustomers() {
@@ -78,7 +78,6 @@ public class FlightBookingSystem {
     			out.add(customer);
     		}
     	}
-    	
     	return Collections.unmodifiableList(out);
     }
     
@@ -115,8 +114,9 @@ public class FlightBookingSystem {
         flights.put(flight.getId(), flight);
     }
     /**
-     * Sets flight as removed
+     * Set a flight as removed
      * @param flight as {@link Flight}
+     * @throws IllegalArgumentException when the given flight cannot be found in the system
      */
     public void removeFlight(Flight flight) throws IllegalArgumentException {
         if (flights.containsKey(flight.getId())) {
@@ -150,6 +150,8 @@ public class FlightBookingSystem {
     /**
      * Removes a customer from the list of customers in the system
      * @param Customer as {@link Customer}
+     * @throws IllegalArgumentException when the given customer cannot be found in the system
+
      */
     public void removeCustomer(Customer customer) throws IllegalArgumentException {
         if (customers.containsKey(customer.getID())) {

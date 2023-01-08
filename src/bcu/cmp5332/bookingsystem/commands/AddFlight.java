@@ -2,6 +2,7 @@ package bcu.cmp5332.bookingsystem.commands;
 
 import bcu.cmp5332.bookingsystem.data.FlightBookingSystemData;
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
+import bcu.cmp5332.bookingsystem.model.Customer;
 import bcu.cmp5332.bookingsystem.model.Flight;
 import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
 
@@ -23,7 +24,7 @@ public class AddFlight implements  Command {
     private final double price;
 
     /**
-     * 
+     * Initialises attributes to construct a {@link Flight} from
      * @param flightNumber as {@link Integer}
      * @param origin as {@link Integer}
      * @param destination as {@link Integer}
@@ -37,7 +38,11 @@ public class AddFlight implements  Command {
         this.passengerCapacity = passengerCapacity;
         this.price = price;
     }
-    
+    /**
+     * Constructs {@link Flight} object and saves it into a FlightBookingSystem object
+     * @param fbs as {@link FlightBookingSystem} to execute command on
+     * @throws FlightBookingSystemException when an error occurs while adding new flight
+     */
     @Override
     public void execute(FlightBookingSystem flightBookingSystem) throws FlightBookingSystemException {
         int maxId = 0;

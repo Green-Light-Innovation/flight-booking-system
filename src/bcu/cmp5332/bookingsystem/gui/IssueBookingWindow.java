@@ -11,7 +11,7 @@ import bcu.cmp5332.bookingsystem.commands.AddBooking;
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
 
 /**
- * GUI pop-up used to add {@link Booking}s to the {@link FlightBookingSystem}
+ * GUI pop-up used to add new {@link Booking}s to the {@link FlightBookingSystem}
  * @author Jack Atkins
  * @author Daniel Jukes
  */

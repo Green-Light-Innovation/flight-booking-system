@@ -19,7 +19,7 @@ public class AddCustomer implements Command {
     private final String email;
     
     /**
-     * 
+     * Initialises object with attributes to construct a {@link Customer} from
      * @param name as {@link String}
      * @param phone as {@link String}
      * @param email as {@link String}
@@ -29,7 +29,12 @@ public class AddCustomer implements Command {
         this.phone = phone;
         this.email = email;
     }
-
+    
+    /**
+     * Constructs {@link Customer} object and saves it into a FlightBookingSystem object
+     * @param fbs as {@link FlightBookingSystem} to execute command on
+     * @throws FlightBookingSystemException when an error occurs while adding new customer
+     */
     @Override
     public void execute(FlightBookingSystem flightBookingSystem) throws FlightBookingSystemException {
         int maxId = 0;

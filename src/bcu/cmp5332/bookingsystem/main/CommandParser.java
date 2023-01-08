@@ -43,7 +43,7 @@ public class CommandParser {
                 LocalDate departureDate = parseDateWithAttempts(reader);
                 System.out.print("Passenger Capacity: ");
                 int passengerCapacity = Integer.parseInt(reader.readLine());
-                System.out.print("Price: £");
+                System.out.print("Price: ï¿½");
                 double price = Double.parseDouble(reader.readLine());
                 
 

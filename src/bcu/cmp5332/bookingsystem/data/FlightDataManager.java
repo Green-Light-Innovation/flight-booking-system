@@ -1,6 +1,7 @@
 package bcu.cmp5332.bookingsystem.data;
 
 import bcu.cmp5332.bookingsystem.main.FlightBookingSystemException;
+import bcu.cmp5332.bookingsystem.model.Booking;
 import bcu.cmp5332.bookingsystem.model.Flight;
 import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
 import java.io.File;
@@ -10,18 +11,35 @@ import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+/** 
+ * Handles loading {@link Flight}s into and out of the system from bookings.txt
+ * @author Daniel Jukes
+ * @author Jack Atkins
+ *
+ */
 public class FlightDataManager implements DataManager {
     
     private final String RESOURCE;
     
+    /**
+     * Create a {@link BookingDataManager} object with the default resources location
+     */
     public FlightDataManager() {
     	this.RESOURCE = "./resources/data/flights.txt";
     }
-    
+    /**
+     * Create a {@link BookingDataManager} object with a custom resources location
+     * <p> used for testing
+     */
     public FlightDataManager(String resource) {
     	this.RESOURCE = resource;
     }
-    
+    /**
+     * Opens flights.txt, parses individual flights, saving them to a FlightBookingSystem object
+     *@param fbs as {@link FlightBookingSystem} to load {@link Flight}s into
+     *@throws IOException if there is a file access error
+     *@throws FlightBookingSystemException if there is an error parsing flight data
+     */
     @Override
     public void loadData(FlightBookingSystem fbs) throws IOException, FlightBookingSystemException {
         try (Scanner sc = new Scanner(new File(RESOURCE))) {
@@ -56,7 +74,12 @@ public class FlightDataManager implements DataManager {
             }
         }
     }
-    
+    /**
+     * Reads flight data from a {@link FlightBookingSystem} object, 
+     * parsing each contained flight into a store-able format, writing bookings to flights.txt
+     *@param fbs as {@link FlightBookingSystem} to load {@link Flight}s into
+     *@throws IOException if there is a file access error
+     */
     @Override
     public void storeData(FlightBookingSystem fbs) throws IOException {
         try (PrintWriter out = new PrintWriter(new FileWriter(RESOURCE))) {

@@ -17,6 +17,7 @@ public class AddBooking implements Command {
 	private final int CUSTOMER_ID;
 	
 	/**
+     * Initialises attributes to construct a {@link Customer} from
 	 * @param customerID as {@link Integer}
 	 * @param flightID as {@link Integer}
 	 */
@@ -25,7 +26,13 @@ public class AddBooking implements Command {
 		this.CUSTOMER_ID = customerID;
 	}
 	
-	
+    /**
+     * Fetches {@link Customer} and {@link Flight} from given ID's,
+     * constructs a {@link Booking}, assigns this booking to this customer,
+     * then assigns customer to flight
+     * @param fbs as {@link FlightBookingSystem} to execute command on
+     * @throws FlightBookingSystemException when an error occurs while adding new booking
+     */
 	@Override
 	public void execute(FlightBookingSystem flightBookingSystem) throws FlightBookingSystemException {
 		try {

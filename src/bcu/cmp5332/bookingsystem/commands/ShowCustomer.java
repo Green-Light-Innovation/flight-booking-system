@@ -16,12 +16,17 @@ public class ShowCustomer implements Command{
 	private final int id;
 	
 	/**
+	 * Takes in a customer ID to fetch customer data from
 	 * @param id as {@link Integer}
 	 */
 	public ShowCustomer(int id) {
 		this.id = id;
 	}
-	
+	/**
+	 * Prints given {@link Customer}s details 
+     * @param fbs as {@link FlightBookingSystem} to execute command on 
+     * @throws FlightBookingSystemException when an error occurs while printing {@link Customer}s details
+     */
 	@Override
 	public void execute(FlightBookingSystem flightBookingSystem) throws FlightBookingSystemException {
 		System.out.println(flightBookingSystem.getCustomerByID(id).getDetailsLong());

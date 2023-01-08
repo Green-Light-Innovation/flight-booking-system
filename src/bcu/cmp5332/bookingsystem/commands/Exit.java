@@ -7,7 +7,8 @@ import bcu.cmp5332.bookingsystem.model.FlightBookingSystem;
 import bcu.cmp5332.bookingsystem.data.FlightBookingSystemData;
 
 /**
- * {@link Command} class that stores the {@link FlightBookingSystem} data into txt files using the {@link FlightBookingSystemData} class
+ * {@link Command} class that stores the {@link FlightBookingSystem} data into txt files,
+ * using the {@link FlightBookingSystemData} class
  * @author Jack Atkins
  * @author Daniel Jukes
  */
